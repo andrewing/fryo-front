@@ -1,0 +1,30 @@
+@font-face {
+  font-family: Quicksand;
+  src: url("./util/font/Quicksand\ Regular\ 400.ttf")
+}
+
+@font-face {
+  font-family: Open-Sans;
+  src: url("./util/font/OpenSans-Regular.ttf")
+}
+
+@font-face {
+  font-family: Raleway;
+  src: url("./util/font/Raleway-Regular.ttf")
+}
+
+.quicksand{
+  font-family: Quicksand;
+}
+
+.open-sans{
+  font-family: Open-Sans;
+}
+
+.raleway{
+  font-family: Raleway;
+}
+
+body {
+  margin: 0px
+}
