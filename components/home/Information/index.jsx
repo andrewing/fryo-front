@@ -1,4 +1,40 @@
-const Information = ({ stringDeliveryTime, stringCutOffTime }) => {
+import { useEffect, useState } from 'react'
+import useSWR from 'swr'
+import moment from 'moment'
+import { BASE_URL } from '../../../util/api'
+import { fetcher } from '../../../util/helper/fetcher'
+
+const Information = () => {
+  const { data: deliveryTime, error: errDelivery } = useSWR('/api/delivery-time', fetcher)
+  const [stringDeliveryTime, setStringDeliveryTime] = useState("")
+  useEffect(() => {
+    if (deliveryTime)
+      setStringDeliveryTime(
+        deliveryTime ?
+          `every 
+        ${deliveryTime?.day}, 
+        ${moment(deliveryTime?.from, "HH:mm:ss.SSS").format("hh:mma")} 
+        to 
+        ${moment(deliveryTime?.to, "HH:mm:ss.SSS").format("hh:mma")}`
+          :
+          ``
+      )
+  }, [deliveryTime])
+
+  const { data: cutOffTime, error: errCutOff } = useSWR('/api/cut-off-time', fetcher)
+  const [stringCutOffTime, setStringCutOffTime] = useState("")
+  useEffect(() => {
+    if (cutOffTime)
+      setStringCutOffTime(
+        cutOffTime ?
+        `every 
+        ${cutOffTime?.day}, 
+        ${moment(cutOffTime?.time, "HH:mm:ss.SSS").format("hh:mma")}`
+        :
+        ``
+      )
+  }, [cutOffTime])
+
   return (
     <div
       className="container"
@@ -53,7 +89,7 @@ const Information = ({ stringDeliveryTime, stringCutOffTime }) => {
             lineHeight: "24px"
           }}
         >
-          delivery: {stringDeliveryTime}
+          delivery: {stringDeliveryTime ?? ""}
         </div>
         <div
           className="open-sans"
@@ -64,7 +100,7 @@ const Information = ({ stringDeliveryTime, stringCutOffTime }) => {
             lineHeight: "24px"
           }}
         >
-          cut-off: {stringCutOffTime}
+          cut-off: {stringCutOffTime ?? ""}
         </div>
       </div>
     </div>
