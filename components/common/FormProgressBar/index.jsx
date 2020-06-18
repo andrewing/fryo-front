@@ -1,6 +1,4 @@
 import { useState } from "react"
-import { Steps } from "antd"
-const { Step } = Steps
 
 const FormProgressBar = ({ page, total }) => {
   return (
