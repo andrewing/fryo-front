@@ -38,7 +38,7 @@ const NavButton = ({ totalFee, page, total, setPage }) => {
                   color: "rgba(255,255,255,0.8)",
                   padding: "4.5px 12px",
                   marginRight: "10px",
-                  fontWeight: 400,
+                  fontWeight: 400, 
                 }
                 :
                 {
