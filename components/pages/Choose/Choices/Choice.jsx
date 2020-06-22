@@ -34,34 +34,42 @@ const Choice = ({ id, name, price, link, getters, setters }) => {
 
   return (
     <Grid item>
-      <img
-        src={processLinkGdrive(link)}
-        onLoad={() => setImgLoading(false)}
+      <div
         style={{
           height: "205px",
           width: "205px",
-          display: isImgLoading && "none",
-          cursor: "pointer"
+          overflow: "hidden"
         }}
-        onClick={handleClick}
-        onMouseDown={() => choicePaper.current.classList.add(styles.active)}
-        onMouseUp={() => choicePaper.current.classList.remove(styles.active)}
-        onMouseEnter={() => choicePaper.current.classList.add(styles.hover)}
-        onMouseLeave={() => choicePaper.current.classList.remove(styles.hover)}
-      />
-      <Skeleton
-        variant="rect"
-        animation="wave"
-        style={{
-          height: "205px",
-          width: "205px",
-          display: !isImgLoading && "none"
-        }}
-      />
+      >
+        <img
+          src={processLinkGdrive(link)}
+          onLoad={() => setImgLoading(false)}
+          style={{
+            height: "205px",
+            width: "205px",
+            display: isImgLoading && "none",
+            cursor: "pointer"
+          }}
+          onClick={handleClick}
+          onMouseDown={() => choicePaper.current.classList.add(styles.active)}
+          onMouseUp={() => choicePaper.current.classList.remove(styles.active)}
+          onMouseEnter={() => choicePaper.current.classList.add(styles.hover)}
+          onMouseLeave={() => choicePaper.current.classList.remove(styles.hover)}
+        />
+        <Skeleton
+          variant="rect"
+          animation="wave"
+          style={{
+            height: "205px",
+            width: "205px",
+            display: !isImgLoading && "none"
+          }}
+        />
+      </div>
       <Paper
         ref={choicePaper}
         elevation={3}
-        className={`${styles.choice} ${(order[id].qty > 0  || order[id].qty === "")? styles.selected : ""}`}
+        className={`${styles.choice} ${(order[id].qty > 0 || order[id].qty === "") ? styles.selected : ""}`}
         style={{
           width: "100%",
           cursor: "pointer"

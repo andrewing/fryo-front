@@ -9,7 +9,6 @@ const CustomerInfo = ({ setters, getters }) => {
   const {setAllInputInPageValid, setName, setContactNumber, setAddress} = setters
 
   useEffect(()=>{
-    
     const regexContactNumberPH = /^(09|\+639)\d{9}$/
     if(!name.trim() || !contactNumber.trim() || (!address.trim() && deliveryMethod.name.toLowerCase() === "delivery")){
       setAllInputInPageValid({
@@ -27,7 +26,6 @@ const CustomerInfo = ({ setters, getters }) => {
         isValid: true
       })
     }
-      
   }, [contactNumber, name, address])
 
   return (

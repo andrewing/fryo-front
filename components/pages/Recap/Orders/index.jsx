@@ -78,7 +78,6 @@ const Orders = ({ order, orderFee, totalFee, deliveryFee }) => {
           </div>
         </ListItem>
       </List>
-
     </Paper>
   )
 }
