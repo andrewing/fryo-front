@@ -1,7 +1,7 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons"
 import styles from "./index.module.css"
 
-const NavButton = ({ totalFee, page, total, setPage }) => {
+const NavButton = ({ totalFee, page, total, setPage, allInputInPageValid, setOpenSnackbar }) => {
   return (
     <div
       style={{
@@ -13,7 +13,7 @@ const NavButton = ({ totalFee, page, total, setPage }) => {
       <div>
         <button
           className={`${styles.navButton} ${styles.navLeft}`}
-          style={{ display: page === 0 && "none" }}
+          style={page === total - 1 ? {borderRadius: "20px 20px 20px 20px", minWidth: "118px" }:{ display: page === 0 && "none" }}
           onClick={() => {
             if (page > 0) setPage(page - 1)
           }}
@@ -22,9 +22,16 @@ const NavButton = ({ totalFee, page, total, setPage }) => {
         </button>
         <button
           className={`${styles.navButton} ${styles.navRight}`}
-          style={page === 0 ? { borderRadius: "20px 20px 20px 20px", minWidth: "118px" } : {}}
+          style={page === 0 ? { borderRadius: "20px 20px 20px 20px", minWidth: "118px" } : {display: page === total -1 && "none"}}
           onClick={() => {
-            if (page < total) setPage(page + 1)
+            if (allInputInPageValid.isValid) {
+              if (page <= total) {
+                setOpenSnackbar(false)
+                setPage(page + 1)
+              }
+            }else{
+              setOpenSnackbar(true)
+            }
           }}
         >
           <span
@@ -38,7 +45,7 @@ const NavButton = ({ totalFee, page, total, setPage }) => {
                   color: "rgba(255,255,255,0.8)",
                   padding: "4.5px 12px",
                   marginRight: "10px",
-                  fontWeight: 400, 
+                  fontWeight: 400,
                 }
                 :
                 {

@@ -1,11 +1,38 @@
 import { Paper, Grid } from "@material-ui/core"
-import useSWR from 'swr'
 import styles from "./index.module.css"
-import { fetcher } from "../../../../util/helper/fetcher"
-import { useEffect } from "react"
 import Choice from "./Choice"
+import { useEffect } from "react"
 
 const Choices = ({ products, getters, setters }) => {
+  const { setAllInputInPageValid } = setters
+  const { order } = getters
+
+  useEffect(() => {
+    let sum = 0
+    let isEmpty = false
+    for (const key in order) {
+      isEmpty = order[key].qty === ""
+      sum += order[key].qty
+    }
+
+    if (sum === 0) {
+      setAllInputInPageValid({
+        message: "Please choose a fry.o!",
+        isValid: false
+      })
+    }else if(isEmpty){
+      setAllInputInPageValid({
+        message: "Please don't leave any fields blank!",
+        isValid: false
+      })
+    }else{
+      setAllInputInPageValid({
+        message: "Thank you for choosing a fry.o",
+        isValid: true
+      })
+    }
+  }, [order])
+
   return (
     <div style={{ width: "100%" }}>
       <Paper elevation={3} className={styles.container} >
@@ -17,7 +44,7 @@ const Choices = ({ products, getters, setters }) => {
                 key={item.id}
                 id={item._id}
                 price={item?.price}
-                imgPath={item?.picture?.[0]?.url}
+                link={item?.link}
                 getters={getters}
                 setters={setters}
               />

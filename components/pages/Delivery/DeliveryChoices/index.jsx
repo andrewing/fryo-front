@@ -3,11 +3,26 @@ import { fetcher } from '../../../../util/helper/fetcher'
 import DeliveryChoice from './DeliveryChoice'
 import { Alert, Skeleton } from "@material-ui/lab"
 import { Divider } from '@material-ui/core'
+import { useEffect } from 'react'
 
 const DeliveryChoices = ({ setters, getters }) => {
   const { data: deliveryChoices, error: errDeliveryChoice, isValidating } = useSWR('/api/deliveries', fetcher)
-  const { setTotalFee, setDeliveryMethod } = setters
+  const { setDeliveryFee, setDeliveryMethod, setAllInputInPageValid } = setters
   const { deliveryMethod } = getters
+
+  useEffect(() => {
+    if (!deliveryMethod)
+      setAllInputInPageValid({
+        message: "Please choose a delivery method!",
+        isValid: false
+      })
+    else
+      setAllInputInPageValid({
+        message: "Thank you for choosing!",
+        isValid: true
+      })
+  }, [deliveryMethod])
+
   return (
     <div>
       {
@@ -19,7 +34,7 @@ const DeliveryChoices = ({ setters, getters }) => {
               name={item.name}
               price={item.price}
               helperText={item.helpertext}
-              setTotalFee={setTotalFee}
+              setDeliveryFee={setDeliveryFee}
               setDeliveryMethod={setDeliveryMethod}
               deliveryMethod={deliveryMethod}
             />
@@ -27,8 +42,8 @@ const DeliveryChoices = ({ setters, getters }) => {
           :
           (
             <React.Fragment>
-              <Skeleton height={60} style={{width: "100%"}} animation="wave" />
-              <Skeleton height={60} style={{width: "100%"}} animation="wave" />
+              <Skeleton height={60} style={{ width: "100%" }} animation="wave" />
+              <Skeleton height={60} style={{ width: "100%" }} animation="wave" />
             </React.Fragment>
           )
       }

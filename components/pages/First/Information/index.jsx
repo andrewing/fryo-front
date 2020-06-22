@@ -5,7 +5,7 @@ import { fetcher } from '../../../../util/helper/fetcher'
 import styles from "./index.module.css"
 import { Skeleton } from '@material-ui/lab'
 
-const Information = () => {
+const Information = ({ setters, getters }) => {
   const { data: deliveryTime, error: errDelivery } = useSWR('/api/delivery-time', fetcher)
   const [stringDeliveryTime, setStringDeliveryTime] = useState("")
   useEffect(() => {
@@ -36,19 +36,24 @@ const Information = () => {
       )
   }, [cutOffTime])
 
+  const { setAllInputInPageValid } = setters
+  useEffect(() => {
+    setAllInputInPageValid({ message: "", isValid: true })
+  }, [])
+
   return (
     <React.Fragment>
-      <div style={{height: "25vh", width: "100%"}}/>
+      <div style={{ height: "25vh", width: "100%" }} />
       <div>
         <div className={`raleway-medium ${styles.title}`}>
           the fry.o
-      </div>
+        </div>
         <div className={`quicksand-light ${styles.tagline}`}>
           milk's favorite cookies
-      </div>
+        </div>
         <div className={`quicksand-light ${styles.tagline}`}>
           —made better
-      </div>
+        </div>
         <div style={{ height: "24px" }}></div>
         {
           stringDeliveryTime ?

@@ -1,15 +1,15 @@
-const Title = () => {
+const Title = ({text, fontSize = "48px"}) => {
   return (
     <div
-      className="raleway"
+      className="raleway-medium"
       style={{
-        fontSize: "48px",
+        fontSize,
         color: "#254b7e",
         lineHeight: "54px",
         fontWeight: 500
       }}
     >
-      Choose your fry.o:
+      {text}
     </div>
   )
 }

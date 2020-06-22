@@ -1,0 +1,21 @@
+.container{
+  width: 95%;
+  margin: 10px auto;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.order{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.orderDetails{
+  display: flex;
+  flex-direction: column;
+  padding: 0px 10px
+}

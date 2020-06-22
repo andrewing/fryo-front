@@ -1,13 +1,13 @@
 import style from "./DeliveryChoice.module.css"
 
-const DeliveryChoice = ({ id, name, price, helperText, setTotalFee, setDeliveryMethod, deliveryMethod }) => {
+const DeliveryChoice = ({ id, name, price, helperText, setDeliveryFee, setDeliveryMethod, deliveryMethod }) => {
 
   return (
     <div
       id={id}
       className={`${style.choice} ${id === deliveryMethod?.id && style.selected}`}
       onClick={() => {
-        setTotalFee(price)
+        setDeliveryFee(price)
         setDeliveryMethod({id, name, price, helperText})
       }}
     >
