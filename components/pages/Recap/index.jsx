@@ -1,15 +1,17 @@
 import Title from "../../common/Title"
 import Info from "./Info"
 import Orders from "./Orders"
-import { Button } from "@material-ui/core"
+import { Button, CircularProgress } from "@material-ui/core"
 import { fetcher } from "../../../util/helper/fetcher"
 import useSWR from "swr"
 import { orderToString } from "../../../util/helper/orderToString"
+import { useState } from "react"
 
 const Recap = ({ setters, getters, products }) => {
   const { name, contactNumber, address, order, totalFee, orderFee, deliveryFee, deliveryMethod } = getters
   const { data, error } = useSWR('/api/base-url', fetcher)
-  console.log(orderToString(order))
+  const [isLoading, setLoading] = useState(false)
+
   return (
     <div style={{ maxWidth: "700px", width: "100%" }}>
       <Title text="recap" />
@@ -28,7 +30,7 @@ const Recap = ({ setters, getters, products }) => {
           <input type="hidden" name="total fee" value={totalFee} />
           <input type="hidden" name="_next" value={`${data?.baseUrl}thank-you`} />
           <input type="hidden" name="_subject" value="New submission!" />
-          <input type="text" name="_honey" style={{display: "none "}} />
+          <input type="text" name="_honey" style={{ display: "none " }} />
           <input type="hidden" name="_captcha" value="false"></input>
           <input type="hidden" name="_template" value="box" />
           <Button
@@ -41,12 +43,18 @@ const Recap = ({ setters, getters, products }) => {
             }}
             variant="contained"
             type="submit"
-            onClick={()=>{
+            onClick={() => {
               localStorage.setItem("name", name)
               localStorage.setItem("contactNumber", contactNumber)
+              setLoading(true)
             }}
           >
-            check out
+            {isLoading
+              ?
+              <CircularProgress style={{color: "white"}} size={25} />
+              :
+              "check out"
+            }
           </Button>
         </form>
       </div>
