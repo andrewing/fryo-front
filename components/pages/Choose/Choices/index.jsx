@@ -38,11 +38,12 @@ const Choices = ({ products, getters, setters }) => {
       <Paper elevation={3} className={styles.container} >
         <Grid container spacing={2} justify="center" >
           {
-            products?.map(item =>
+            products?.filter(item=>item.available).map(item =>
               <Choice
                 name={item.name}
                 key={item.id}
                 id={item._id}
+                available={item.available}
                 price={item?.price}
                 link={item?.link}
                 getters={getters}

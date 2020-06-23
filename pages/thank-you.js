@@ -8,13 +8,17 @@ const ThankYou = ({setters, getters}) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "center"
+          justifyContent: "center",
+          width: "100%",
+          flexDirection: "column",
+          alignText: "center",
         }}
       >
         <Title text={`thank you, ${name}!`} />
-        <div>
+        <p className="open-sans" >
           We are now processing your order. A confirmation text along with the payment instruction will be sent within 24 hours.
-        </div>
+        </p>
+        
       </div>
     </React.Fragment>
   )

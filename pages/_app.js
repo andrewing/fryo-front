@@ -63,6 +63,7 @@ export default function MyApp({ Component, pageProps }) {
         <meta name="author" content="Andrew Ing" />
         <meta name="keywords" content="fryo" />
         <link rel="icon" href="/fry.o blue.png" />
+        <link rel="apple-touch-icon" href="/fry.o blue.png" />
       </Head>
       <FormProgressBar page={page} total={pages().length} />
       <Component

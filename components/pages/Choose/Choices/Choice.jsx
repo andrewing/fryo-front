@@ -6,7 +6,7 @@ import { Skeleton } from "@material-ui/lab"
 import styles from "./Choice.module.css"
 import { processLinkGdrive } from "../../../../util/helper/gdrive"
 
-const Choice = ({ id, name, price, link, getters, setters }) => {
+const Choice = ({ id, name, price, link, getters, setters, available }) => {
   const [isImgLoading, setImgLoading] = useState(true)
 
   const choicePaper = useRef(null)
@@ -48,7 +48,7 @@ const Choice = ({ id, name, price, link, getters, setters }) => {
             height: "205px",
             width: "205px",
             display: isImgLoading && "none",
-            cursor: "pointer"
+            cursor: available ? "pointer" : ""
           }}
           onClick={handleClick}
           onMouseDown={() => choicePaper.current.classList.add(styles.active)}
