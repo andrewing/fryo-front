@@ -21,7 +21,7 @@ const Recap = ({ setters, getters, products }) => {
         margin: "10px auto",
         padding: "0px 17.5px"
       }}>
-        <form action="https://formsubmit.co/c3fc9eed3d841359d0cfe518876cb2a9" method="POST">
+        <form action="https://formsubmit.co/the.fryo.ph@gmail.com" method="POST">
           <input type="hidden" name="name" value={name} />
           <input type="hidden" name="contact number" value={contactNumber} />
           <input type="hidden" name="address" value={address} />
