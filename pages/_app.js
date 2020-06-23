@@ -59,6 +59,10 @@ export default function MyApp({ Component, pageProps }) {
       <Head>
         <title>fry.o</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <meta name="description" content="fryo" />
+        <meta name="author" content="Andrew Ing" />
+        <meta name="keywords" content="fryo" />
+        <link rel="icon" href="/fry.o blue.png" />
       </Head>
       <FormProgressBar page={page} total={pages().length} />
       <Component

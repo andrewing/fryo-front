@@ -29,7 +29,7 @@ const Recap = ({ setters, getters, products }) => {
           <input type="hidden" name="order" value={orderToString(order)} />
           <input type="hidden" name="total fee" value={totalFee} />
           <input type="hidden" name="_next" value={`${data?.baseUrl}thank-you`} />
-          <input type="hidden" name="_subject" value="New submission!" />
+          <input type="hidden" name="_subject" value="New order!" />
           <input type="text" name="_honey" style={{ display: "none " }} />
           <input type="hidden" name="_captcha" value="false"></input>
           <input type="hidden" name="_template" value="box" />

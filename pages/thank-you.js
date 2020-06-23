@@ -12,6 +12,9 @@ const ThankYou = ({setters, getters}) => {
         }}
       >
         <Title text={`thank you, ${name}!`} />
+        <div>
+          We are now processing your order. A confirmation text along with the payment instruction will be sent within 24 hours.
+        </div>
       </div>
     </React.Fragment>
   )
